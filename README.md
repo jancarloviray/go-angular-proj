@@ -1,10 +1,25 @@
 # go-angular
 
-Project using AngularJS + Go + RESTful API + ???
+Project using AngularJS + Go + RESTful API + MongoDB
 
 This will be a task management application.
 
 I will be doing simple step by step commits so you can easily see the evolution of the product.
+
+## major libraries
+
+### Server
+
+- [Goji](https://github.com/zenazn/goji) - minimal web framework, net/http compatible
+- [mgo](https://labix.org/mgo) - most advanced/fast/easy MongoDB driver
+
+### Client
+
+- [AngularJS](https://angularjs.org/) - high productivity framework
+
+### Database
+
+- [MongoDB](http://www.mongodb.org/) - agile NoSQL
 
 ## road map
 
@@ -31,7 +46,6 @@ I will be doing simple step by step commits so you can easily see the evolution 
 ## license
 
 - MIT
-
 
 ---
 
