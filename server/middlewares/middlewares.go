@@ -15,6 +15,14 @@ func PlainText(h http.Handler) http.Handler {
 	return http.HandlerFunc(handler)
 }
 
+func JSON(h http.Handler) http.Handler {
+	handler := func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Content-Type", "application/json")
+		h.ServeHTTP(w, r)
+	}
+	return http.HandlerFunc(handler)
+}
+
 func Secure(h http.Handler) http.Handler {
 	handler := func(w http.ResponseWriter, r *http.Request) {
 		auth := r.Header.Get("Authorization") // Basic dXJAKLRYHA
