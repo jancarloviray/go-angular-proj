@@ -16,6 +16,10 @@ func GetTask(id int) (Task, error) {
 	return Task{}, nil
 }
 
+func CreateTask(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprint(w, "task created")
+}
+
 func PutTask(t *Task) error {
 	fmt.Println("PutTask")
 	return nil
