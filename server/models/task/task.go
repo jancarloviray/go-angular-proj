@@ -6,21 +6,27 @@ import (
 
 type Task struct{}
 
-func GetTasks() ([]Task, error) {
-	fmt.Println("GetTasks")
+func List() ([]Task, error) {
+	fmt.Println("List")
 	return []Task{}, nil
 }
 
-func GetTask(id int) (Task, error) {
+func Get(id string) (Task, error) {
 	fmt.Println("GetTask")
 	return Task{}, nil
 }
 
-func CreateTask(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprint(w, "task created")
+func Create(t Task) (int, error) {
+	fmt.Println("CreateTask")
+	return 0, nil
 }
 
-func PutTask(t *Task) error {
+func Update(id string, t Task) error {
 	fmt.Println("PutTask")
+	return nil
+}
+
+func Delete(id string) error {
+	fmt.Println("DeleteTask")
 	return nil
 }
