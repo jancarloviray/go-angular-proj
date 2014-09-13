@@ -23,16 +23,17 @@ I will be doing simple step by step commits so you can easily see the evolution 
 
 ## road map
 
-- base Go entry point and server
-- GET, POST, PUT, DELETE
-- database integration (mongodb / mysql / embedded)
-- simple authentication & security
-- host it in Digital Ocean
-- should be "curl-able" for now
-- prototype design
-- UI in AngularJS + Bootstrap
-- responsive with touch-capability
-- ...anything goes from here!
+- Base Entry in Go
+- GET, POST, PUT, DELETE API
+- DB Integration
+- HTTP Basic Auth & Security
+- Public Hosting
+- UI Prototype Design
+- Front-End AngularJS + Bootstrap
+- Responsive Design with Touch
+- Implementation
+- Gulp Build
+- Unit Tests
 - profit ???
 
 ## contribution
