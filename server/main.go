@@ -3,10 +3,11 @@ package main
 import (
 	"encoding/base64"
 	"fmt"
-	"github.com/zenazn/goji"     // framework
-	"github.com/zenazn/goji/web" // toolkit
 	"net/http"
 	"strings"
+
+	"github.com/zenazn/goji"     // framework
+	"github.com/zenazn/goji/web" // toolkit
 )
 
 const password = "pass"
