@@ -4,6 +4,8 @@ import (
 	"../config"
 	"../middlewares"
 	"../models/task"
+	"encoding/json"
+	"fmt"
 	"github.com/zenazn/goji"
 	"github.com/zenazn/goji/web"
 	"net/http"
@@ -28,6 +30,7 @@ func Static() {
 func API() {
 	api := web.New()
 	api.Use(middlewares.Secure)
+	api.Use(middlewares.JSON)
 	api.Get("/api/tasks", listTasks)
 	api.Get("/api/tasks/:id", getTask)
 	api.Post("/api/tasks", createTask)
@@ -47,7 +50,12 @@ func notFound(w http.ResponseWriter, r *http.Request) {
 }
 
 func listTasks(w http.ResponseWriter, r *http.Request) {
-	task.List()
+	tasks, err := task.List()
+	if err != nil {
+		panic(err)
+	}
+	res, err := json.Marshal(tasks)
+	fmt.Fprint(w, string(res))
 }
 
 func getTask(c web.C, w http.ResponseWriter, r *http.Request) {

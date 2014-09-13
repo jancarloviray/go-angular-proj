@@ -4,11 +4,18 @@ import (
 	"fmt"
 )
 
-type Task struct{}
+type Task struct {
+	Title string
+	Done  bool
+}
+
+var tasks []Task = []Task{
+	Task{Title: "Get Milk", Done: true},
+	Task{Title: "Drink Milk", Done: false},
+}
 
 func List() ([]Task, error) {
-	fmt.Println("List")
-	return []Task{}, nil
+	return tasks, nil
 }
 
 func Get(id string) (Task, error) {
