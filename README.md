@@ -27,6 +27,7 @@ I will be doing simple step by step commits so you can easily see the evolution 
 - GET, POST, PUT, DELETE API
 - DB Integration
 - HTTP Basic Auth & Security
+- Make project "go get"-able github style
 - Public Hosting
 - UI Prototype Design
 - Front-End AngularJS + Bootstrap
