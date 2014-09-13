@@ -1,13 +1,11 @@
 package main
 
 import (
+	"./models"
 	"./routes"
-	"github.com/zenazn/goji"
 )
-
-const password = "pass"
 
 func main() {
 	routes.Init()
-	goji.Serve()
+	models.Setup()
 }

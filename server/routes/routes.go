@@ -11,6 +11,8 @@ import (
 func Init() {
 	static()
 	api()
+
+	goji.Serve()
 }
 
 func static() {
