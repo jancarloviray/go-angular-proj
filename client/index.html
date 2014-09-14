@@ -80,7 +80,7 @@
 						</div>
 					</div>
 
-					<h2 class="sub-header">Add Tasks</h2>
+					<h2 class="sub-header">Add</h2>
 					<form class="form-inline" role="form">
 						<div class="form-group">
 							<label class="sr-only" for="exampleInputEmail2">Task</label>
@@ -94,6 +94,7 @@
 					</form>
 
 					<h2 class="sub-header">Tasks</h2>
+					<input type="text" style="display:inline-block;" class="form-control" placeholder="Filter" ng-model="taskFilter"/>
 					<div class="table-responsive">
 						<table class="table table-striped">
 							<thead>
@@ -107,7 +108,7 @@
 								</tr>
 							</thead>
 							<tbody>
-								<tr ng-repeat="item in home.model.tasks">
+								<tr ng-repeat="item in home.model.tasks | filter: taskFilter">
 									<td>{{item.id}}</td>
 									<td>{{item.title}}</td>
 									<td>{{item.created_date|date:'short'}}</td>

@@ -61,6 +61,8 @@ app.controller('todo/home', [
 
 		_this.refreshTasks();
 
+		$scope.taskFilter = "";
+
 		$scope.currentTask = {
 				id: null,
 				title: '',
