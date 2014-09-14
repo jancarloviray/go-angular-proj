@@ -26,3 +26,5 @@ _testmain.go
 TODO.md
 gin-bin
 .idea
+
+server/server
