@@ -1,8 +1,16 @@
-window.app = angular.module('app',[])
+window.app = angular.module('app',[
+	'ngAnimate',
+	'angular-growl'
+])
+
+app.config(['growlProvider', function(growlProvider) {
+	growlProvider.globalPosition('top-right');
+	growlProvider.globalTimeToLive(3000);
+}]);
 
 app.controller('todo/home', [
-	'$scope',
-	function($scope){
+	'$scope', 'growl',
+	function($scope, growl){
 		var _this = this;
 
 		_this.mock = {
@@ -22,11 +30,13 @@ app.controller('todo/home', [
 
 		_this.createTask = function(){
 			var task = {}
-			$scope.currentTask.id = newID()
-			$scope.currentTask.created_date = new Date()
-			angular.extend(task, $scope.currentTask)
-			_this.mock.tasks.push(task)
+			$scope.currentTask.id = newID();
+			$scope.currentTask.created_date = new Date();
+			angular.extend(task, $scope.currentTask);
+			_this.mock.tasks.push(task);
+			growl.success(task.title, {title:'Task Added'});
 			_this.refreshTasks();
+			task = null;
 		};
 
 		_this.updateTask = function(id, task){
