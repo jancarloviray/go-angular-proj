@@ -4,7 +4,7 @@ window.app = angular.module('app',[
 ])
 
 app.config(['growlProvider', function(growlProvider) {
-	growlProvider.globalPosition('top-right');
+	growlProvider.globalPosition('bottom-right');
 	growlProvider.globalTimeToLive(3000);
 }]);
 
@@ -32,19 +32,25 @@ app.controller('todo/home', [
 			var task = {}
 			$scope.currentTask.id = newID();
 			$scope.currentTask.created_date = new Date();
+
+			// prevent passed by reference bug
 			angular.extend(task, $scope.currentTask);
+
 			_this.mock.tasks.push(task);
-			growl.success(task.title, {title:'Task Added'});
 			_this.refreshTasks();
-			task = null;
+
+			growl.success('Successfully added a task: ' + task.title, {title:'Success'});
 		};
 
 		_this.updateTask = function(id, task){
 
 		};
 
-		_this.deleteTask = function(id){
+		_this.deleteTask = function(index){
+			_this.mock.tasks.splice(index,1)
+			_this.refreshTasks()
 
+			growl.success('Successfully deleted a task.', {title:'Success'})
 		};
 
 		// HELPERS

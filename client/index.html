@@ -113,7 +113,7 @@
 									<td>{{item.created_date|date:'short'}}</td>
 									<td>{{item.owner}}</td>
 									<td><input type="checkbox" ng-model="item.done"/></td>
-									<td><a href="#"/>Delete</a></td>
+									<td><a href="#" ng-click="home.deleteTask($index)"/>Delete</a></td>
 								</tr>
 							</tbody>
 						</table>
