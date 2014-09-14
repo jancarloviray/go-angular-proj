@@ -14,15 +14,26 @@ import (
 func Init() {
 	Static()
 	API()
+	Error()
 
 	goji.Serve()
 }
 
 func Static() {
 	goji.Get("/", http.FileServer(http.Dir(config.C.PublicPath)))
-	goji.Get("/robots.txt", http.FileServer(http.Dir(config.C.PublicPath)))
-	goji.Get("/favicon.ico", http.FileServer(http.Dir(config.C.PublicPath+"/images")))
 
+	static := web.New()
+	static.Get("/styles/*", http.StripPrefix("/styles/", http.FileServer(http.Dir(config.C.PublicPath+"/styles"))))
+	static.Get("/scripts/*", http.StripPrefix("/scripts/", http.FileServer(http.Dir(config.C.PublicPath+"/scripts"))))
+	static.Get("/images/*", http.FileServer(http.Dir(config.C.PublicPath+"/images")))
+	static.Get("/robots.txt", http.FileServer(http.Dir(config.C.PublicPath)))
+
+	goji.Handle("/scripts/*", static)
+	goji.Handle("/styles/*", static)
+	goji.Handle("/images/*", static)
+}
+
+func Error() {
 	// custom 404
 	goji.NotFound(notFound)
 }
