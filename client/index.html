@@ -2,8 +2,106 @@
 <html>
 <head>
 	<title>go-angular</title>
+	<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+	<link href="/styles/app.css" rel="stylesheet">
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.23/angular.min.js"></script>
+	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+	<script src="/scripts/app.js"></script>
 </head>
-<body>
-	<h1>Hello!</h1>
+<body ng-app="app">
+
+	<div id="container" ng-controller="todo/home">
+		<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="#">Task Management</a>
+				</div>
+				<div class="navbar-collapse collapse">
+					<ul class="nav navbar-nav navbar-right">
+						<li><a href="#">Dashboard</a></li>
+						<li><a href="#">Settings</a></li>
+						<li><a href="#">Profile</a></li>
+						<li><a href="#">Help</a></li>
+					</ul>
+					<form class="navbar-form navbar-right">
+						<input type="text" class="form-control" placeholder="Search...">
+					</form>
+				</div>
+			</div>
+		</div>
+
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-sm-3 col-md-2 sidebar">
+					<ul class="nav nav-sidebar">
+						<li class="active"><a href="#">Overview</a></li>
+						<li><a href="#">Reports</a></li>
+						<li><a href="#">Analytics</a></li>
+					</ul>
+				</div>
+				<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+					<h1 class="page-header">Dashboard</h1>
+
+					<div class="row placeholders">
+						<div class="col-xs-6 col-sm-3 placeholder">
+							<div style="background:#0d8fdb;border-radius:200px;height:200px;width:200px;margin:auto;">
+								<span style="line-height:200px;font-size:70px;color:#FFF;font-weight:200;">{{home.model.tasks.length}}</span>
+							</div>
+							<h4>Total</h4>
+							<span class="text-muted">Total Tasks Count</span>
+						</div>
+						<div class="col-xs-6 col-sm-3 placeholder">
+							<div style="background:#39dbac;border-radius:200px;height:200px;width:200px;margin:auto;">
+								<span style="line-height:200px;font-size:70px;color:#FFF;font-weight:200;">1</span>
+							</div>
+							<h4>Done</h4>
+							<span class="text-muted">Tasks Completed</span>
+						</div>
+						<div class="col-xs-6 col-sm-3 placeholder">
+							<div style="background:#f0ad4e;border-radius:200px;height:200px;width:200px;margin:auto;">
+								<span style="line-height:200px;font-size:70px;color:#FFF;font-weight:200;">1</span>
+							</div>
+							<h4>Incomplete</h4>
+							<span class="text-muted">Tasks Remaining</span>
+						</div>
+					</div>
+
+					<h2 class="sub-header">Tasks</h2>
+					<div class="table-responsive">
+						<table class="table table-striped">
+							<thead>
+								<tr>
+									<th>ID</th>
+									<th>Title</th>
+									<th>Created</th>
+									<th>Owner</th>
+									<th>Done</th>
+									<th></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-repeat="item in home.model.tasks">
+									<td>{{item.id}}</td>
+									<td>{{item.title}}</td>
+									<td>{{item.created_date|date:'short'}}</td>
+									<td>{{item.owner}}</td>
+									<td><input type="checkbox" ng-model="item.done"/></td>
+									<td><a href="#"/>Delete</a></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
 </body>
 </html>
