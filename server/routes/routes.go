@@ -15,8 +15,6 @@ func Init() {
 	Static()
 	API()
 	Error()
-
-	goji.Serve()
 }
 
 func Static() {
