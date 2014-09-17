@@ -4,15 +4,15 @@ import (
 	"./models"
 	"./routes"
 
-	"github.com/zenazn/goji"
+	g "github.com/zenazn/goji"
 )
 
 func main() {
-	routes.Init()
+	routes.Setup()
 	models.Setup()
 	server()
 }
 
 func server() {
-	goji.Serve()
+	g.Serve()
 }

@@ -1,24 +1,26 @@
 package routes
 
 import (
+	"encoding/json"
+	"fmt"
+	"net/http"
+
+	g "github.com/zenazn/goji"
+	"github.com/zenazn/goji/web"
+
 	"../config"
 	"../middlewares"
 	"../models/task"
-	"encoding/json"
-	"fmt"
-	"github.com/zenazn/goji"
-	"github.com/zenazn/goji/web"
-	"net/http"
 )
 
-func Init() {
-	Static()
-	API()
-	Error()
+func Setup() {
+	static()
+	api()
+	err()
 }
 
-func Static() {
-	goji.Get("/", http.FileServer(http.Dir(config.C.PublicPath)))
+func static() {
+	g.Get("/", http.FileServer(http.Dir(config.C.PublicPath)))
 
 	static := web.New()
 	static.Get("/styles/*", http.StripPrefix("/styles/", http.FileServer(http.Dir(config.C.PublicPath+"/styles"))))
@@ -26,17 +28,17 @@ func Static() {
 	static.Get("/images/*", http.FileServer(http.Dir(config.C.PublicPath+"/images")))
 	static.Get("/robots.txt", http.FileServer(http.Dir(config.C.PublicPath)))
 
-	goji.Handle("/scripts/*", static)
-	goji.Handle("/styles/*", static)
-	goji.Handle("/images/*", static)
+	g.Handle("/scripts/*", static)
+	g.Handle("/styles/*", static)
+	g.Handle("/images/*", static)
 }
 
-func Error() {
+func err() {
 	// custom 404
-	goji.NotFound(notFound)
+	g.NotFound(notFound)
 }
 
-func API() {
+func api() {
 	api := web.New()
 	api.Use(middlewares.Secure)
 	api.Use(middlewares.JSON)
@@ -49,7 +51,7 @@ func API() {
 	// and can be used to implement
 	// sub-routes which can have custom
 	// middlewares.
-	goji.Handle("/api/*", api)
+	g.Handle("/api/*", api)
 }
 
 // HANDLERS
